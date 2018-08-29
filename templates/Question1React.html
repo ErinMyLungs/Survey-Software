@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+    function submitForm() {
+var xhr = new XMLHttpRequest();
+xhr.open("POST", '/posttest', true);
+
+//Send the proper header information along with the request
+xhr.setRequestHeader("Content-type", "application/json");
+
+xhr.onreadystatechange = function() {//Call a function when the state changes.
+    if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+        // Request finished. Do processing here.
+
+    }
+}
+let responseConversion =  parseInt(document.querySelector('input[name="response"]:checked').value);
+xhr.send(JSON.stringify({'question_1':responseConversion, 'identifier':'question_1'}));
+console.log('send request status:', xhr.status);
+
+}
+    function redirect() {
+        window.location="http://127.0.0.1:5000/question2";
+        }
+    </script>
+    <meta charset="UTF-8">
+    <title>POL Survey Site</title>
+</head>
+<body>
+<div id="questionString"></div>
+<h1>Business business business... numbers. Is this working???</h1>
+<div id="responseForm"></div>
+<form id="question1">
+    <input type="radio" name="response" value="1"> Yes<br>
+    <input type="radio" name="response" value="0"> No<br>
+    <button type="button" onclick="submitForm()">Submit</button>
+</form>
+<div id="submitButton">{}</div>
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <!-- Load our React component. -->
+  <script type="text/babel">
+
+class SubmitButton extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+
+    render() {
+        return(
+            <button onClick={() => submitForm()}>REACT SUBMIT</button>
+        );
+    }
+}
+ReactDOM.render(<SubmitButton />, document.getElementById("submitButton"));
+  </script>
+</body>
+</html>

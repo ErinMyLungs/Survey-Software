@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function submitForm() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", '/updatedata', true);
+
+            //Send the proper header information with the request
+            xhr.setRequestHeader("Content-type", "application/json");
+
+            xhr.onreadystatechange = function() {//Call a function when the state changes.
+                if(xhr.readyState == XMLHttpRequest.Done && xhr.status == 200) {
+                    // Request finished. Do processing here.
+                }
+            }
+        var responseConversion = parseInt(document.getElementById("response").value);
+        var userID = parseInt(document.getElementById("userID").value);
+        xhr.send(JSON.stringify({'question_3':responseConversion, 'identifier':'question_3', 'userID':userID,}));
+
+        }
+        function redirect() {
+        window.location="http://127.0.0.1:5000/results";
+        }
+    </script>
+    <meta charset="UTF-8">
+    <title>The Last Important Question!</title>
+</head>
+<body>
+<h1> What is your favorite birb??</h1>
+<form id="'question2"></form>
+    <input type="range" min="1" max="10" class="slider" id="response"><br>
+    <input type="number" ID="userID">
+    <button type="button" onclick="submitForm();redirect()">Submit</button>
+</body>
+</html>
