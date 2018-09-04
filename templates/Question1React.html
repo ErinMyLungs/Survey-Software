@@ -14,7 +14,7 @@ xhr.onreadystatechange = function() {//Call a function when the state changes.
         // Request finished. Do processing here.
 
     }
-}
+};
 let responseConversion =  parseInt(document.querySelector('input[name="response"]:checked').value);
 xhr.send(JSON.stringify({'question_1':responseConversion, 'identifier':'question_1'}));
 console.log('send request status:', xhr.status);
@@ -34,7 +34,7 @@ console.log('send request status:', xhr.status);
 <form id="question1">
     <input type="radio" name="response" value="1"> Yes<br>
     <input type="radio" name="response" value="0"> No<br>
-    <button type="button" onclick="submitForm()">Submit</button>
+    <button type="button" onclick="submitForm(),redirect()">Submit</button>
 </form>
 <div id="submitButton">{}</div>
   <!-- Load React. -->
