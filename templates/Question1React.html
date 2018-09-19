@@ -45,19 +45,61 @@ console.log('send request status:', xhr.status);
   <!-- Load our React component. -->
   <script type="text/babel">
 
+function App(){
+    return(
+        <div className ='submit-button'>
+            <SubmitButton />
+        </div>
+    )
+}
+
+function Question(props){
+    const questions = [ "business business question??", "question 2", "question 3" ];
+    return(<h1>{questions[props.number]}</h1>);
+}
+
+function Responses(props){
+    const responses = [['    <input type="radio" name="response" value="1"> Yes<br>\n' +
+    '    <input type="radio" name="response" value="0"> No<br>'],['s'],['3']];
+    const responseString = String(responses[props.number]);
+    return(<h2>{responseString}</h2>);
+}
+
 class SubmitButton extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            stepNumber:0,
+        };
+
     }
 
+    handleSubmitClick() {
+        this.setState({stepNumber: this.state.stepNumber + 1});
+    }
 
     render() {
         return(
-            <button onClick={() => submitForm()}>REACT SUBMIT</button>
+            <div>
+
+    <div className="Question">
+        <Question number={this.state.stepNumber}/>
+    </div>
+
+    <div className="Response">
+        <Responses number={this.state.stepNumber}/>
+    </div>
+
+    <div className='submitButton'>
+    <button onClick={() => {submitForm(); this.handleSubmitClick()}}>REACT SUBMIT</button>
+     </div>
+
+            </div>
         );
     }
 }
-ReactDOM.render(<SubmitButton />, document.getElementById("submitButton"));
+
+ReactDOM.render(<App />, document.getElementById("submitButton"));
   </script>
 </body>
 </html>
