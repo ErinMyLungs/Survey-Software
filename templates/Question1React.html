@@ -58,11 +58,47 @@ function Question(props){
     return(<h1>{questions[props.number]}</h1>);
 }
 
+function Radio(props){
+    return(
+        <input type={props.type} name="response" value={props.value}>{props.valuestr}<br>
+            );
+}
+
 function Responses(props){
-    const responses = [['    <input type="radio" name="response" value="1"> Yes<br>\n' +
-    '    <input type="radio" name="response" value="0"> No<br>'],['s'],['3']];
-    const responseString = String(responses[props.number]);
-    return(<h2>{responseString}</h2>);
+    const responses = [
+        {
+            type:'radio',
+            value0:0,
+            value0str:'No',
+            value1:1,
+            value1str:'Yes'
+        },
+        {
+            type:'slider',
+            min:1,
+            max:10
+        },
+        {
+            type:'slider'
+            min:1,
+            max:10
+        }
+    ];
+    let type= responses[props.number].type;
+    if (type === 'radio'){
+        let length = ((Object.keys(responses[props.number])) -1 / 2);
+        for (step = 0; step <  length; step++){
+            let responsesType = responses[props.number].type;
+            let responsesValue = responses[props.number].{value+step};
+            let responsesStr = responses[props.number].{value+{step}+Str};
+        return(
+            <div>
+            <Radio type={responsesType} value={responsesValue} valuestr={responsesStr} />
+            </div>
+            );
+        }
+        };
+    return( <ul>{responseMap}</ul> );
 }
 
 class SubmitButton extends React.Component {
@@ -71,7 +107,6 @@ class SubmitButton extends React.Component {
         this.state = {
             stepNumber:0,
         };
-
     }
 
     handleSubmitClick() {
