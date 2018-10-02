@@ -60,18 +60,17 @@ function Question(props){
 
 function Radio(props){
     return(
-        <input type={props.type} name="response" value={props.value}>{props.valuestr}<br>
-            );
-}
+        <input type={props.type} name="response" value={props.value}>{props.valuestr}</input>
+    );
+            }
+
 
 function Responses(props){
     const responses = [
         {
             type:'radio',
-            value0:0,
-            value0str:'No',
-            value1:1,
-            value1str:'Yes'
+            response0:{value:0, string:'No'},
+            response1:{value:1, string:'Yes'}
         },
         {
             type:'slider',
@@ -79,25 +78,21 @@ function Responses(props){
             max:10
         },
         {
-            type:'slider'
+            type:'slider',
             min:1,
             max:10
         }
     ];
     let type= responses[props.number].type;
     if (type === 'radio'){
-        let length = ((Object.keys(responses[props.number])) -1 / 2);
-        for (step = 0; step <  length; step++){
-            let responsesType = responses[props.number].type;
-            let responsesValue = responses[props.number].{value+step};
-            let responsesStr = responses[props.number].{value+{step}+Str};
-        return(
-            <div>
-            <Radio type={responsesType} value={responsesValue} valuestr={responsesStr} />
-            </div>
-            );
+        let responseObject = responses[props.number];
+        let responseKeys = Object.keys(responseObject);
+        for (var step = 1; step = responseKeys.length; step++){
+            let value = ;
+            let string = ;
+
         }
-        };
+    };
     return( <ul>{responseMap}</ul> );
 }
 
